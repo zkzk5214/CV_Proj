@@ -10,4 +10,4 @@ function [dzdx,dzdw,dzdb] = back_fc(x,w,dzdy)
 
 dzdw = dzdy .* x;
 dzdx = dzdy .* w;
-dzdb = sum(dzdy,1);
+dzdb = dzdy;
