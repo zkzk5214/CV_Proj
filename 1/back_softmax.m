@@ -4,6 +4,6 @@ function [dzdx] = back_softmax(x,y,dzdy)
 %              dzdy An vector of size M * 1
 % Output:      dzdx An vector of size M * 1
 
-der = -y'*y + diag(y,0);
-dzdx = der * dzdy;
+dydx = diag(exp(x) * sum(exp(x))) / sum(exp(x))^2-y*y';
+dzdx = dydx * dzdy;
 end
