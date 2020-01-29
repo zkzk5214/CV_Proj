@@ -17,7 +17,7 @@ dzdy = [-2 4 1 -3 -2; 3 1 -1 3 -2; -1 -2 -3 5 4];
 Y = forw_relu(X);
 
 %computing the backprop derivatives analytically 
-dzdx = back_relu(X,dzdy);
+dzdx = back_relu(X,Y,dzdy);
 
 %%
 %now compute them by using numerical derivatives 
