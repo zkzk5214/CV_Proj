@@ -25,18 +25,13 @@ dzdx = back_relu(X,dzdy);
 % numerically compute dz/dX
 eps = 1.0e-6;
 dzdxnumeric = zeros(size(X));
-
-% Y = forw_conv(X,w,bias);
 Y = forw_relu(X);
 
 for i=1:size(X,1)
     for j=1:size(X,2)
         newim = X;
-        newim(i,j) = newim(i,j)+eps;
-        
-        yprime = forw_relu(newim);
-%         yprime = forw_conv(newim,w,bias);
-        
+        newim(i,j) = newim(i,j)+eps;       
+        yprime = forw_relu(newim);       
         deriv = (yprime-Y)/eps;
         %similar to above, deriv = dY/dxij, the deriv of all Y  wrt one xij value
         %we dot product that with deriv of z wrt all Y values, thus 
