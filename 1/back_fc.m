@@ -1,4 +1,4 @@
-function [dzdx,dzdw,dzdb] = back_fc(x,w,dzdy)
+function [dzdx,dzdw,dzdb] = back_fc(x,w,b,y,dzdy)
 % Input:       x An matrix of size M * N
 %              w An matrix of size M * N 
 %              b a scalar bias value
@@ -11,3 +11,4 @@ function [dzdx,dzdw,dzdb] = back_fc(x,w,dzdy)
 dzdw = dzdy .* x;
 dzdx = dzdy .* w;
 dzdb = dzdy;
+end
