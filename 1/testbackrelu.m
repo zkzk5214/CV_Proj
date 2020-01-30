@@ -43,7 +43,7 @@ end
 %%
 %we will just compare them by eye
 %this could be more fancy, like computing max abs diff between the two
-fprintf('comparison of analytic and numerical derivs conv backprop\n');
+fprintf('comparison of analytic and numerical derivs relu backprop\n');
 fprintf('comparing dz/dx values\n');
 dzdx
 dzdxnumeric
