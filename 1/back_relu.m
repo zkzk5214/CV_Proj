@@ -2,7 +2,7 @@ function [dzdx] = back_relu(x,y,dzdy)
 % Input:       x An matrix of size M * N
 %              y An matrix of size M * N
 %              dzdy An matrix of size M * N 
-% Output:      An matrix of size M * N
+% Output:      dzdx An matrix of size M * N
 
 [m,n]=size(dzdy);
 dydx = zeros(m,n);
