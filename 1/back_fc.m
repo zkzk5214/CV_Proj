@@ -8,7 +8,10 @@ function [dzdx,dzdw,dzdb] = back_fc(x,w,b,y,dzdy)
 %              dzdw an matrix of size M * N  
 %              dzdb a value 
 
+% dydw = x
 dzdw = dzdy .* x;
+% dydx = w
 dzdx = dzdy .* w;
+% dydb = 1
 dzdb = dzdy;
 end
