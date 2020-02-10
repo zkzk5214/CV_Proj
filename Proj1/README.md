@@ -6,4 +6,6 @@ what datasets are you using
 what problems are you trying to fix   
 what approaches are you looking at to fix them
 
-[__基于全连接孪生网络的目标跟踪（siamese-fc）__](https://blog.csdn.net/autocyz/article/details/53216786)
+[__基于全连接孪生网络的目标跟踪（siamese-fc)__](https://blog.csdn.net/autocyz/article/details/53216786)  
+
+[__Siamese Networks: Algorithm, Applications And PyTorch Implementation__](https://becominghuman.ai/siamese-networks-algorithm-applications-and-pytorch-implementation-4ffa3304c18)
