@@ -12,4 +12,4 @@ what approaches are you looking at to fix them
 
 [__Pytorch-SiamFC-Github__](https://github.com/rafellerc/Pytorch-SiamFC)  
 
-[__Kalman Fitler__](../CV_Proj/Proj1/zhou2019)
+[__Kalman Fitler__](./CV_Proj/Proj1/zhou2019.pdf)
