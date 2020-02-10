@@ -9,3 +9,7 @@ what approaches are you looking at to fix them
 [__基于全连接孪生网络的目标跟踪（siamese-fc)__](https://blog.csdn.net/autocyz/article/details/53216786)  
 
 [__Siamese Networks: Algorithm, Applications And PyTorch Implementation__](https://becominghuman.ai/siamese-networks-algorithm-applications-and-pytorch-implementation-4ffa3304c18)
+
+[__Pytorch-SiamFC-Github__](https://github.com/rafellerc/Pytorch-SiamFC)  
+
+[__Kalman Fitler__](https://www.researchgate.net/publication/333057611_Combined_Kalman_Filter_and_Multifeature_Fusion_Siamese_Network_for_Real-Time_Visual_Tracking)
