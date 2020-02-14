@@ -1,7 +1,11 @@
 Project 1, modify an existing Siamese Tracker to add functionality that makes it work better.  
 
 Feb 13: 1-page “proposal” outlining 
-
+Feb 25: Video (still slides in the form of a video are fine as well) showing progress made so far on project 1.   
+Give an overview of what your are doing for the project.  
+Show some of your initial promising results.  
+What difficulties are you running in to?  
+What ideas do you have to overcome these difficulties?
 
 [__基于全连接孪生网络的目标跟踪（siamese-fc)__](https://blog.csdn.net/autocyz/article/details/53216786)  
 
