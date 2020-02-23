@@ -2,37 +2,28 @@
 Modify an existing Siamese Tracker to add functionality that makes it work better.  
 
 ## To do lists:
+### Group 1: (ZL,MY) 
+1. Run Siamese-FC using Pytorch
+2. Understand the code for Siamese-FC
+3. Test an occlusion video using Siamese-FC, find the problem and propose the optimization scheme
+4. Where and How to add the Kalman filter 
+5. How does the Siamese-FC crop the input image
 
-1. run FC baseline
-	pytorch
-	try to track a occlusion video, probelm?
-	how to add kalman filter 
-	hwo to crop input image
-	correlation map 
-zekai liu
-mingzhao yu
-
-
-2. design kalman filter 
-	choose one which can be used for our project(py.numpy)
-	input? output? 
-	how to determine parameters? guess? do we need to train it?
-	try to track a occlusion video
-chengyu hu
-Liming gao
-
+### Group 2: (CH LG)
+1. Choose an kalman filter 
+2. Understand the code for this Kalman filter 
+3. Input and output parameters 
+4. How to combine Kalman filter and Siam-FC? do we need to train?
+5. Use this filter to track the occlusion video separately
 	
-deadline: 02282020
+deadline: 02/28/2020
 
-
-3. how to combine kalman filter and siam 
-
-## Object
-Video (still slides in the form of a video are fine as well) showing progress made so far on project 1.   
-Give an overview of what your are doing for the project.  
-Show some of your initial promising results.  
-What difficulties are you running in to?  
-What ideas do you have to overcome these difficulties?
+## Assignment
+1.Video (still slides in the form of a video are fine as well) showing progress made so far on project 1.   
+2.Give an overview of what your are doing for the project.  
+3.Show some of your initial promising results.  
+4.What difficulties are you running in to?  
+5.What ideas do you have to overcome these difficulties?
 
 ## Reference
 
@@ -51,10 +42,10 @@ What ideas do you have to overcome these difficulties?
 [__Vehicle-Detection-and-Tracking__](https://github.com/kcg2015/Vehicle-Detection-and-Tracking)  
 
 ## How to Get Started  
-Evaluate the tracker you downloaded, out of the box, on one of the publicly available tracking datasets.  
-See what kinds of mistakes it makes.  
-Hypothesize how you might improve the tracker to not make those mistakes.  
-Implement your improvement.  
-Evaluate your improved tracker on the dataset from before, to see if it got better.  
-Also, check if there are some sequences it got worse on;this is important because focusing on fixing one problem inadvertently screws up something that used to work before.  
-Iterate, Iterate, Iterate. 
+1.Evaluate the tracker, out of the box, on one of the publicly available tracking datasets.  
+2.See what kinds of mistakes it makes.  
+3.Hypothesize how you might improve the tracker to not make those mistakes.  
+4.Implement your improvement.  
+5.Evaluate your improved tracker on the dataset from before, to see if it got better.  
+6.Check if there are some sequences it got worse on(this is important because focusing on fixing one problem inadvertently screws up something that used to work before)
+7.Iterate, Iterate, Iterate. 
