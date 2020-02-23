@@ -19,11 +19,11 @@ Modify an existing Siamese Tracker to add functionality that makes it work bette
 deadline: 02/28/2020
 
 ## Assignment
-1.Video (still slides in the form of a video are fine as well) showing progress made so far on project 1.   
-2.Give an overview of what your are doing for the project.  
-3.Show some of your initial promising results.  
-4.What difficulties are you running in to?  
-5.What ideas do you have to overcome these difficulties?
+1. Video (still slides in the form of a video are fine as well) showing progress made so far on project 1.   
+2. Give an overview of what your are doing for the project.  
+3. Show some of your initial promising results.  
+4. What difficulties are you running in to?  
+5. What ideas do you have to overcome these difficulties?
 
 ## Reference
 
@@ -42,10 +42,10 @@ deadline: 02/28/2020
 [__Vehicle-Detection-and-Tracking__](https://github.com/kcg2015/Vehicle-Detection-and-Tracking)  
 
 ## How to Get Started  
-1.Evaluate the tracker, out of the box, on one of the publicly available tracking datasets.  
-2.See what kinds of mistakes it makes.  
-3.Hypothesize how you might improve the tracker to not make those mistakes.  
-4.Implement your improvement.  
-5.Evaluate your improved tracker on the dataset from before, to see if it got better.  
-6.Check if there are some sequences it got worse on(this is important because focusing on fixing one problem inadvertently screws up something that used to work before)
-7.Iterate, Iterate, Iterate. 
+1. Evaluate the tracker, out of the box, on one of the publicly available tracking datasets.  
+2. See what kinds of mistakes it makes.  
+3. Hypothesize how you might improve the tracker to not make those mistakes.  
+4. Implement your improvement.  
+5. Evaluate your improved tracker on the dataset from before, to see if it got better.  
+6. Check if there are some sequences it got worse on(this is important because focusing on fixing one problem inadvertently screws up something that used to work before)
+7. Iterate, Iterate, Iterate. 
