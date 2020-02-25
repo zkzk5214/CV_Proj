@@ -1,6 +1,34 @@
 # CAN BE INPUT FOR KALMAN FILTER 
 ## [srch_cx], [srch_cy] : the x/y coordinate of the center of the target.
+### srch_cx = (srch_annot['xmax'] + srch_annot['xmin'])/2  
+### srch_cy = (srch_annot['ymax'] + srch_annot['ymin'])/2
+### srch_annot = self.annotations[seq_idx],[second_idx]
+### annotation, h, w, valid = get_annotations(self.dir_annot, sequence, frame)
+### get_annotations function
+    def get_annotations(annot_dir, sequence_dir, frame_file):
+    """ Gets the annotations contained in the xml file of the current frame.
 
+    Args:
+        annot_dir (str): The root dir of annotation folders
+        sequence_dir(str): The directory in which frame is located, relative to
+        root directory
+        frame_file (str): The frame filename
+        i.e., sequence_identifier/frame_number.JPEG, or the full path.
+    Return:
+        annotation: (dictionary) A dictionary containing the four values of the
+            the bounding box stored in the following keywords:
+            'xmax' (int): The rightmost x coordinate of the bounding box.
+            'xmin' (int): The leftmost x coordinate of the bounding box.
+            'ymax' (int): The uppermost y coordinate of the bounding box.
+            'ymin' (int): The lowest y coordinate of the bounding box.
+
+        width (int): The width of the jpeg image in pixels.
+        height (int): The height of the jpeg image in pixels.
+        valid_frame (bool): False if the target is present in the frame,
+            and True otherwise.
+        OBS: If the target is not in the frame the bounding box information
+        are all None.
+    """
 ## [srch_frame] : the image to be cropped.
 ### self.frame[seq_idx],[second_frame_idx]
 ### seq_idx: (int) The index of a sequence inside the whole dataset  
