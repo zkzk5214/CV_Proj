@@ -4,6 +4,7 @@
 ## [srch_frame] : the image to be cropped.
 ### self.frame[seq_idx],[second_frame_idx]
 ### seq_idx: (int) The index of a sequence inside the whole dataset  
+### seq_idx from function
     def __getitem__(self, idx):
         """ Returns the inputs and output for the learning problem. The input
         consists of an reference image tensor and a search image tensor, the
@@ -22,7 +23,8 @@
                 function in self.label_fcn.
         """
         seq_idx = self.list_idx[idx]
-### second_frame_idx: (int) The index of the search frame insidethe sequence.  
+### second_frame_idx: (int) The index of the search frame insidethe sequence.
+### second_frame_idx from function
     def get_pair(self, seq_idx, frame_idx=None):
         """ Gets two frames separated by at most self.max_frame_sep frames (in
         both directions), both contained in the sequence corresponding to the
