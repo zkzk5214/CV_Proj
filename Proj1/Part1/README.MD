@@ -2,8 +2,9 @@
 ## [srch_cx], [srch_cy] : the x/y coordinate of the center of the target.
 
 ## [srch_frame] : the image to be cropped.
-### from： self.frame[seq_idx][second_idx]
-  
+### from： self.frame[seq_idx],[second_idx]
+seq_idx: (int) The index of a sequence inside the whole dataset  
+second_idx: (int) The index of the search frame insidethe sequence.  
 ## [srch_ctx_size] : the side of the square region around the target, in pixels. Must be an odd integer.
 ### srch_ctx_size = ref_ctx_size * self.search_size / self.reference_size
 ### srch_ctx_size = (srch_ctx_size//2)*2 + 1
