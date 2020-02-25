@@ -27,13 +27,15 @@ deadline: 02/28/2020
 
 ## Reference
 
-[__基于全连接孪生网络的目标跟踪（siamese-fc)__](https://blog.csdn.net/autocyz/article/details/53216786)  
-
-[__Siamese Networks: Algorithm, Applications And PyTorch Implementation__](https://becominghuman.ai/siamese-networks-algorithm-applications-and-pytorch-implementation-4ffa3304c18)
-
+### Important
 [__Pytorch-SiamFC-Github__](https://github.com/rafellerc/Pytorch-SiamFC)  
 
 [__Kalman Fitler__](https://github.com/zkzk5214/CV_Proj/blob/master/Proj1/zhou2019.pdf)
+
+### Others
+[__基于全连接孪生网络的目标跟踪（siamese-fc)__](https://blog.csdn.net/autocyz/article/details/53216786)  
+
+[__Siamese Networks: Algorithm, Applications And PyTorch Implementation__](https://becominghuman.ai/siamese-networks-algorithm-applications-and-pytorch-implementation-4ffa3304c18)
 
 [__Kalman_filter_multi_object_tracking__](https://github.com/srianant/kalman_filter_multi_object_tracking)  
 
