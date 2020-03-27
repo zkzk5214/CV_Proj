@@ -2,28 +2,31 @@
 Modify an existing Siamese Tracker to add functionality that makes it work better.  
 
 ## To do lists:
-### Group 1: (ZL,MY) 
-1. Run Siamese-FC using Pytorch
-2. Understand the code for Siamese-FC
-3. Test an occlusion video using Siamese-FC, find the problem and propose the optimization scheme
-4. Where and How to add the Kalman filter 
-5. How does the Siamese-FC crop the input image
+1.    Continue improve  Kalman filter -- Predict “complex” trajectories (curve)
+2.    Crop images -- shorten prediction time
+3.    Find best datasets (Curve Trajectories) add block  
 
-### Group 2: (CH LG)
-1. Choose an kalman filter 
-2. Understand the code for this Kalman filter 
-3. Input and output parameters 
-4. How to combine Kalman filter and Siam-FC? do we need to train?
-5. Use this filter to track the occlusion video separately
-	
-deadline: 02/28/2020
+Deadline: 31/3/2020
 
 ## Assignment
-1. Video (still slides in the form of a video are fine as well) showing progress made so far on project 1.   
-2. Give an overview of what your are doing for the project.  
-3. Show some of your initial promising results.  
-4. What difficulties are you running in to?  
-5. What ideas do you have to overcome these difficulties?
+### Improve:
+1.    Crop large search images to small ones to shorten prediction time
+2.    Predict complex trajectories
+
+### Presentation Part
+3-3.5 minute video  (contains an audio narration track) 
+Give an overview : what you did for project 1 .  
+Outline in detail your technical approach,  emphasize any novel ideas you implemented.  
+Show evaluation results.
+Q1: Did your work improve the performance of the tracker?  
+Q2: What were some of the lessons learned, both pros and cons?  
+
+### Report and code part
+Upload as a single zip file your project code and a short written report.  
+Report should refer to video results shown in presentation.  
+Use the report to provide more detail on motivation, approach, related work, tables/plots showing quantitative performance evaluation, and conclusions.  
+This basically will be a write-up of the things you said during your spotlight presentation.  
+
 
 ## Reference
 
@@ -46,12 +49,3 @@ deadline: 02/28/2020
 [__Kalman-and-Bayesian-Filters-in-Python__](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python)  
 
 [__Vehicle-Detection-and-Tracking__](https://github.com/kcg2015/Vehicle-Detection-and-Tracking)  
-
-## How to Get Started  
-1. Evaluate the tracker, out of the box, on one of the publicly available tracking datasets.  
-2. See what kinds of mistakes it makes.  
-3. Hypothesize how you might improve the tracker to not make those mistakes.  
-4. Implement your improvement.  
-5. Evaluate your improved tracker on the dataset from before, to see if it got better.  
-6. Check if there are some sequences it got worse on(this is important because focusing on fixing one problem inadvertently screws up something that used to work before)
-7. Iterate, Iterate, Iterate. 
