@@ -1,2 +1,2 @@
 ## Code about the Kalman Filter  
-### Improved tracking of curve trajectories 
+### Improve tracking of curve trajectories 
