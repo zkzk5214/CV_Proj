@@ -2,11 +2,10 @@
 Modify an existing Siamese Tracker to add functionality that makes it work better.  
 
 ## To do lists:
-1.    Continue improve  Kalman filter -- Predict “complex” trajectories (curve)
-2.    Crop images -- shorten prediction time
-3.    Find best datasets (Curve Trajectories) add block  
+1.    Presentation Part
+2.    Report and code part
 
-Deadline: 31/3/2020
+Deadline: 2/4/2020
 
 ## Assignment
 ### Improve:
