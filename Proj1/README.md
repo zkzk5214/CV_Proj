@@ -9,8 +9,8 @@ Deadline: 2/4/2020
 
 ## Assignment
 ### Improve:
-1.    Crop large search images to small ones to shorten prediction time
-2.    Predict complex trajectories
+1.    Eliminates interference from similar objects
+2.    Kalman filter predicts occulsion
 
 ### Presentation Part
 3-3.5 minute video  (contains an audio narration track) 
@@ -32,7 +32,6 @@ This basically will be a write-up of the things you said during your spotlight p
 ### Important
 [__Pytorch-SiamFC-Github__](https://github.com/rafellerc/Pytorch-SiamFC)  
 
-[__Kalman Fitler__](https://github.com/zkzk5214/CV_Proj/blob/master/Proj1/zhou2019.pdf)
 
 ### Others
 [__Kalman Filter Interview__](https://towardsdatascience.com/kalman-filter-interview-bdc39f3e6cf3)  
