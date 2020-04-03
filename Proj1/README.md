@@ -6,7 +6,6 @@ Modify an existing Siamese Tracker to add functionality that makes it work bette
 ### Important
 [__Pytorch-SiamFC-Github__](https://github.com/rafellerc/Pytorch-SiamFC)  
 
-[__Kalman Fitler__](https://github.com/zkzk5214/CV_Proj/blob/master/Proj1/zhou2019.pdf)
 
 ### Others
 [__Kalman Filter Interview__](https://towardsdatascience.com/kalman-filter-interview-bdc39f3e6cf3)  
