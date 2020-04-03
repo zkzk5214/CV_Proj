@@ -19,5 +19,3 @@ Modify an existing Siamese Tracker to add functionality that makes it work bette
 [__Kalman_filter_multi_object_tracking__](https://github.com/srianant/kalman_filter_multi_object_tracking)  
 
 [__Kalman-and-Bayesian-Filters-in-Python__](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python)  
-
-[__Vehicle-Detection-and-Tracking__](https://github.com/kcg2015/Vehicle-Detection-and-Tracking)  

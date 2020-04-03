@@ -1,2 +1,2 @@
 ## Code about the Kalman Filter  
-### Improve tracking of curve trajectories 
+### Position estimation of uniform linear motion
