@@ -1,33 +1,6 @@
 # Project 1： 
 Modify an existing Siamese Tracker to add functionality that makes it work better.  
 
-## To do lists:
-1.    Continue improve  Kalman filter -- Predict “complex” trajectories (curve)
-2.    Crop images -- shorten prediction time
-3.    Find best datasets (Curve Trajectories) add block  
-
-Deadline: 31/3/2020
-
-## Assignment
-### Improve:
-1.    Crop large search images to small ones to shorten prediction time
-2.    Predict complex trajectories
-
-### Presentation Part
-3-3.5 minute video  (contains an audio narration track) 
-Give an overview : what you did for project 1 .  
-Outline in detail your technical approach,  emphasize any novel ideas you implemented.  
-Show evaluation results.
-Q1: Did your work improve the performance of the tracker?  
-Q2: What were some of the lessons learned, both pros and cons?  
-
-### Report and code part
-Upload as a single zip file your project code and a short written report.  
-Report should refer to video results shown in presentation.  
-Use the report to provide more detail on motivation, approach, related work, tables/plots showing quantitative performance evaluation, and conclusions.  
-This basically will be a write-up of the things you said during your spotlight presentation.  
-
-
 ## Reference
 
 ### Important
