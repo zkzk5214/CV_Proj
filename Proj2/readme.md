@@ -1,4 +1,11 @@
-# For Project 2, answer these questions:
-• How many 3D points do you need to hypothesize a plane?  
-• Given a minimal sample of points,how do you estimate the parameters of the plane? In fact, how do you parameterize a plane in 3D?  
-• Given a hypothesized plane, how do you measure the distance of a 3D point to that plane?  
+## Task1: Chengyu
+### 1,2,3): take pictures, use COLMAP to generate point cloud, and camera\image parameters
+
+## Task2: Zekai
+### 4,5): fit a plane using RANSAC based on the point cloud and display the result.
+
+## Task3: Mingzhao
+### 6,7): 3D coordinate transformation, XYZ to xyz, create a virtual object(cubic) in xyz,find its XYZ
+
+## Task4: Liming
+### 8,9,10):read camera and images parameters. project a set of 3D(XYZ) poitns to image, project a 3D virtual box to image
