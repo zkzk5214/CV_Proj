@@ -1,13 +1,13 @@
 # Steps（1，2，3）
 ## 文件夹格式：
-/path/to/project/...
-+── images
-│   +── image1.jpg
-│   +── image2.jpg
-│   +── ...
-│   +── imageN.jpg
-+── database.db
-+── project.ini
+/path/to/project/...  
++── images  
+│   +── image1.jpg  
+│   +── image2.jpg  
+│   +── ...  
+│   +── imageN.jpg  
++── database.db  
++── project.ini  
 
 ## COLMAP使用方法：
 File——New Project:
