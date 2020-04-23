@@ -65,23 +65,19 @@ for i=1:iter
  end
 
 
- %%  plot the dominant plane
+ %%  plot the points cloud, inliers, and dominant plane
  h_fig = figure(45555);
  set(h_fig,'Name','result data');
+ %points cloud
  plot3(X,Y,Z,'b.')
  hold on;
-  %show inliers
-mask=abs(bestplane*[data; ones(1,size(data,2))])<sigma;    
-
-k = 1;
-for i=1:length(mask)
-    if mask(i)
-        inliers(1,k) = data(1,i);
-        inliers(2,k) = data(2,i);
-        plot3(data(1,i),data(2,i),data(3,i),'r+');
-        k = k+1;
-    end
-end
+%show inliers
+mask=abs(bestplane*[data; ones(1,size(data,2))])/sqrt(plane_fit(1)^2+plane_fit(2)^2+plane_fit(3)^2)<sigma;    
+inliers_index = find(mask==1);
+fprintf(['Find %d inliers!\n'],length(inliers_index) )
+inliers = data(:,inliers_index);
+plot3(inliers(1,:),inliers(2,:),inliers(3,:),'r+');
+%show dominant plane
  xAxis = min(inliers(1,:)):max(inliers(1,:));
  yAxis = min(inliers(2,:)):max(inliers(2,:));
  [x,y] = meshgrid(xAxis, yAxis);
