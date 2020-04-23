@@ -51,8 +51,7 @@ while k > trialcount
             break
         end
     end
-    [inliers, M, error_current] = X2P_distance(M,p, params.inlier_threshold, ...
-        params.error_func);
+    [inliers, M, error_current] = X2P_distance(M,p, params.inlier_threshold, params.error_func);
     ninliers = length(inliers);
     
     if error_current < min_error

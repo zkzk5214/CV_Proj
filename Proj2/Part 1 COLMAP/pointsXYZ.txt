@@ -1,3 +1,7 @@
+# 3D point list with one line of data per point:
+# X, Y, Z
+# Number of points: 7689
+
 3.67223 -2.71039 13.2194
 3.77813 -2.13548 13.1673
 -1.33628 1.67238 11.6429
