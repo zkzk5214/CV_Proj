@@ -9,7 +9,7 @@ function pointsXYZ = importfile(filename, dataLines)
 %  for dis-contiguous row intervals.
 %
 %  Example:
-%  pointsXYZ = importfile("D:\¶Á²©À²\Research\Project\GitHub\CV_Proj\Proj2\Part 2 plane fit\pointsXYZ.txt", [1, Inf]);
+%  pointsXYZ = importfile("pointsXYZ.txt", [1, Inf]);
 %
 %  See also READTABLE.
 %

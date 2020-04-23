@@ -95,8 +95,9 @@ plot3(inliers(1,:),inliers(2,:),inliers(3,:),'r+');
  yAxis = min(inliers(2,:)):max(inliers(2,:));
  [x,y] = meshgrid(xAxis, yAxis);    
  z_fit = -bestplane(1) * x/bestplane(3) - bestplane(2)  * y/bestplane(3)...
-     - bestplane(4)/bestplane(3);   % ax+by+cz+d=0 => z= ...
+     - bestplane(4)/bestplane(3);   %
  surf(x, y, z_fit);
+ 
  title(['dominant plane: ',num2str(bestplane(1)),'x + ',...
      num2str(bestplane(2)),'y + ',num2str(bestplane(3)),'z + ', ...
      num2str(num2str(bestplane(4))),'=0']);
@@ -107,3 +108,20 @@ plot3(inliers(1,:),inliers(2,:),inliers(3,:),'r+');
  zlabel('Z')
  legend('points cloud','inliers','dominant plane')
  
+ 
+ function  compare(sample,plane,plane_fit)
+ figure(1212)
+ xAxis = min(sample(1,:)):0.1:max(sample(1,:));
+ yAxis = min(sample(2,:)):0.1:max(sample(2,:));
+ [x,y] = meshgrid(xAxis, yAxis);
+%z=ax+by+c
+ %z = plane(1) * x + plane(2)  * y + plane(4) ;
+ 
+%ax+by+cz+d=0; cz=-ax-by-d 
+z_fit = -plane_fit(1) * x/plane_fit(3) - plane_fit(2)  * y/plane_fit(3) - plane_fit(4)/plane_fit(3) ;
+%plot3(x, y, z,'b.');
+ hold on
+ plot3(x, y, z_fit,'m.');
+ plot3(sample(1,:), sample(2,:), sample(3,:),'ro');
+ 
+ end
