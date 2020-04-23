@@ -86,9 +86,9 @@ plot3(inliers(1,:),inliers(2,:),inliers(3,:),'r+');
  title(['dominant plane: ',num2str(bestplane(1)),'x + ',num2str(bestplane(2)),'y + ',num2str(bestplane(3)),'z + ', num2str(num2str(bestplane(4))),'=0']);
  grid on
  rotate3d on
- xlabel('x')
- ylabel('y')
- zlabel('z')
+ xlabel('X')
+ ylabel('Y')
+ zlabel('Z')
  legend('points cloud','inliers','dominant plane')
  
  
