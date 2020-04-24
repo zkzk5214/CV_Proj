@@ -12,7 +12,7 @@ Z = pointsXYZ(:,3);
 
 %%% plot
 % Whether to check the data(1=Y/0=N)
-check_data_flag =0; 
+check_data_flag =1; 
 if check_data_flag == 1
     h_fig = figure(1);
     set(h_fig,'Name','check data');
