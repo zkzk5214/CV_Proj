@@ -196,7 +196,8 @@ p5 = [width_box/2,width_box/2,width_box];
 p6 = [width_box/2,-width_box/2,width_box];
 p7 = [-width_box/2,-width_box/2,width_box];
 p8 = [-width_box/2,width_box/2,width_box];
-C_box_z0 = [p1;p2;p3;p4;p5;p6;p7;p8];% coordinates of box in z=0 coordinates
+%C_box_z0 = [p1;p2;p3;p4;p5;p6;p7;p8];% coordinates of box in z=0 coordinates
+C_box_z0 = [p1;p2;p3;p4];% coordinates of box in z=0 coordinates
 
 h_fig = figure(320);
 set(h_fig,'Name','Box in new coordinate');
@@ -252,7 +253,7 @@ P4 = fill3(C_box_XYZ([3,4,8,7],1),C_box_XYZ([3,4,8,7],2),C_box_XYZ([3,4,8,7],3),
 P5 = fill3(C_box_XYZ([2,3,7,6],1),C_box_XYZ([2,3,7,6],2),C_box_XYZ([2,3,7,6],3),5);
 P6 = fill3(C_box_XYZ([1,4,8,5],1),C_box_XYZ([1,4,8,5],2),C_box_XYZ([1,4,8,5],3),6);
 
- plot3(pointsXYZ(:,1),pointsXYZ(:,2),pointsXYZ(:,3),'b.');
+ %plot3(pointsXYZ(:,1),pointsXYZ(:,2),pointsXYZ(:,3),'b.');
  surf(x, y, z_fit);
 % new coordinate
 plot3(dominant_center_x , dominant_center_y ,dominant_center_z,'m.','MarkerSize',25); %o

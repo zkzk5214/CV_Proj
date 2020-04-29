@@ -35,8 +35,7 @@ num_images = length(images);
 Pimagepts_3Dbox = zeros(2,length(Pworldpts_3Dbox),length(images));
 for image_i=1:num_images
     Pose_External = [images(image_i).R images(image_i).t];
-    %Camera_Intrinsic = [cameras(images(image_i).camera_id).params]';
-    Camera_Intrinsic = [cameras(6).params]';
+    Camera_Intrinsic = [cameras(images(image_i).camera_id).params]';
     
    Pimagepts_3Dbox(:,:,image_i) = fnc_ProjectPointToImage(Pworldpts_3Dbox,Pose_External, Camera_Intrinsic);
     
@@ -45,20 +44,21 @@ end
 %% Step5: show pictures and box projection
 images_path = '.\Part 1 COLMAP\images\';
 for image_i=1:num_images
-    I = rgb2gray(imread([images_path,'image',num2str(image_i),'.jpg']));
-   % I2 = rgb2gray(imread([images_path,'image2.jpg']));
-    % I3 = rgb2gray(imread('image3.jpg'));
-    % I4 = rgb2gray(imread('image4.jpg'));
-    % I5 = rgb2gray(imread('image5.jpg'));
-    % I6 = rgb2gray(imread('image6.jpg'));
-    h_fig = figure(1000+image_i);
-    set(h_fig,'Name',['Image',num2str(image_i),' and projection' ]);
-    colormap(gray);
-    clf;
-    % subplot(2,1,1);
-    imagesc(I);
-    hold on
-    plot(Pimagepts_3Dbox(1,:,image_i),Pimagepts_3Dbox(2,:,image_i),'r.','MarkerSize',25);
-    hold off
-    drawnow
-end
+I1 = rgb2gray(imread([images_path,'image1.jpg']));
+I2 = rgb2gray(imread([images_path,'image2.jpg']));
+% I3 = rgb2gray(imread('image3.jpg'));
+% I4 = rgb2gray(imread('image4.jpg'));
+% I5 = rgb2gray(imread('image5.jpg'));
+% I6 = rgb2gray(imread('image6.jpg'));
+h_fig = figure(330);
+set(h_fig,'Name','Box in world coordinate');
+colormap(gray); 
+clf; 
+% subplot(2,1,1);
+imagesc(I1);
+hold on
+plot(Pimagepts_3Dbox(1,:,1),Pimagepts_3Dbox(2,:,1),'r.','MarkerSize',25);
+% subplot(2,1,2);
+% imagesc(I2);
+hold off
+drawnow

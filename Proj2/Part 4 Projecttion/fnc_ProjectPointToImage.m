@@ -46,7 +46,7 @@ k1 = Camera_Intrinsic(4);
 world_point_distortion = world_point_hnormalized + k1*world_point_hnormalized.*r2;  % x'',y''
 
 % Transform to image coordinates
-Pimagepts = f*world_point_distortion + repmat(cxy,1,numpts);
+Pimagepts = f*world_point_distortion(1:2,:) + repmat(cxy,1,numpts);
 
 end
 
