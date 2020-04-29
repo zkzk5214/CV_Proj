@@ -7,10 +7,10 @@
 
 clear all; 
 close all;
-
-
-%% Step1:  Run Part1-3 to generate dominiant plane and 3D box
-% script_planefit_rotate
+addpath('.\Part 4 Projecttion\');
+addpath('.\Part3 3D box\');
+%% Step1:  Run Part 1-3 to generate dominiant plane and 3D box
+script_planefit_rotate
 
 %% Step2: load model parameters
 path = '.\Part 1 COLMAP\';
@@ -24,6 +24,8 @@ end
 
 
 %% Step3: load scene points coordinates 
+
+Pworldpts_3Dbox = C_box_XYZ';
 % points_8 = Get_3D_rect(x, y, rect)    # points_8含有8个3D点，维度是4*8的array
 % img_points_8 = np.matmul(Ps[cam], points_8)    # 3*4的P矩阵和点进行相乘
 % img_points_8 = img_points_8/img_points_8[2,:]	# homogeneous进行归一化，之后可以在image上绘制

@@ -45,7 +45,7 @@ bestParameter1=0;   bestParameter2=0;   bestParameter3=0;
 sigma = 0.01;   pretotal=0;    
 % Calculate number of loops N, for this projet as large as possible(Unused) 
 iter = max(10*log(1-confidence)/log(1-power(1-p_outlier,num_sample))...
-    ,10*number);
+    ,1*number);
 
 for i=1:iter
     % Choose 3 points randomly
@@ -175,9 +175,8 @@ newXYZ_3Dpoints = R'*(pointsXYZ'-  dominant_center');
 
 h_fig = figure(310);
 set(h_fig,'Name','Points in new coordinate');
-plot3(newXYZ_inliers(1,:),newXYZ_inliers(2,:),newXYZ_inliers(3,:),'g+');
+plot3(newXYZ_inliers(1,:),newXYZ_inliers(2,:),newXYZ_inliers(3,:),'r.');
 hold on
-plot3(newXYZ_3Dpoints(1,:),newXYZ_3Dpoints(2,:),newXYZ_3Dpoints(3,:),'b.');
 plot3(newXYZ_dominant(1,:),newXYZ_dominant(2,:),newXYZ_dominant(3,:),'r.');
 grid on
 rotate3d on
