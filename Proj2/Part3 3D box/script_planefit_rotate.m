@@ -117,6 +117,8 @@ plot3(dominant_center_x , dominant_center_y ,dominant_center_z,'c.','MarkerSize'
  zlabel('Z')
  legend('points cloud','inliers','dominant plane')
  
+ 
+ % bestplane =[0.3173    0.0289   -0.3741    4.7391] % Multi cameras
 %% =================Part3 Coordinate transformation and 3D box============ 
  
 %% step1: define new coordinate 

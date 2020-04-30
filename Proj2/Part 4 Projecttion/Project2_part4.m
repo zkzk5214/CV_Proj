@@ -36,7 +36,7 @@ Pimagepts_3Dbox = zeros(2,length(Pworldpts_3Dbox),length(images));
 for image_i=1:num_images
     Pose_External = [images(image_i).R images(image_i).t];
     %Camera_Intrinsic = [cameras(images(image_i).camera_id).params]';
-    Camera_Intrinsic = [cameras(6).params]';
+    Camera_Intrinsic = [cameras(1).params]';
     
    Pimagepts_3Dbox(:,:,image_i) = fnc_ProjectPointToImage(Pworldpts_3Dbox,Pose_External, Camera_Intrinsic);
     
