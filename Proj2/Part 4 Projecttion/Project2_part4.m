@@ -19,18 +19,11 @@ if ~strcmp(cameras(1).model, 'SIMPLE_RADIAL')
     error('This camera is not SIMPLE_RADIAL model.');
 end
 % refer to github https://github.com/colmap/colmap/tree/dev/scripts/matlab
-% [cameras, images,points3D] = read_model(path);
-% plot_model(cameras, images, points3D)
 
-
-%% Step3: load scene points coordinates 
-
+%%Step3: load scene points coordinates 
 Pworldpts_3Dbox = C_box_XYZ';
-% points_8 = Get_3D_rect(x, y, rect)    # points_8含有8个3D点，维度是4*8的array
-% img_points_8 = np.matmul(Ps[cam], points_8)    # 3*4的P矩阵和点进行相乘
-% img_points_8 = img_points_8/img_points_8[2,:]	# homogeneous进行归一化，之后可以在image上绘制
 
-%% Step4: WorldPointToImagePoint
+%%Step4: WorldPointToImagePoint
 num_images = length(images);
 Pimagepts_3Dbox = zeros(2,length(Pworldpts_3Dbox),length(images));
 for image_i=1:num_images
@@ -42,7 +35,7 @@ for image_i=1:num_images
     
 end
 
-%% Step5: show pictures and box projection
+%% Step5: show pictures and box corners projection
 images_path = '.\Part 1 COLMAP\images\';
 for image_i=1:num_images
     I = rgb2gray(imread([images_path,'image',num2str(image_i),'.jpg']));
@@ -54,9 +47,31 @@ for image_i=1:num_images
     % subplot(2,1,1);
     imagesc(I);
     hold on
-    plot(Pimagepts_3Dbox(1,:,image_i),Pimagepts_3Dbox(2,:,image_i),'r.','MarkerSize',25);
+    plot(Pimagepts_3Dbox(1,1:4,image_i),Pimagepts_3Dbox(2,1:4,image_i),'r.','MarkerSize',25);
+    plot(Pimagepts_3Dbox(1,5:8,image_i),Pimagepts_3Dbox(2,5:8,image_i),'b.','MarkerSize',25);
     hold off
     drawnow
+    legend('Lower 4 corners (z=0)','Upper 4 corners')
+end
+
+
+%% Step6: show pictures and box corners projection
+images_path = '.\Part 1 COLMAP\images\';
+for image_i=1:num_images
+    I = rgb2gray(imread([images_path,'image',num2str(image_i),'.jpg']));
+
+    h_fig = figure(1000+image_i);
+    set(h_fig,'Name',['Image',num2str(image_i),' and projection' ]);
+    colormap(gray);
+    clf;
+    % subplot(2,1,1);
+    imagesc(I);
+    hold on
+    plot(Pimagepts_3Dbox(1,1:4,image_i),Pimagepts_3Dbox(2,1:4,image_i),'r.','MarkerSize',25);
+    plot(Pimagepts_3Dbox(1,5:8,image_i),Pimagepts_3Dbox(2,5:8,image_i),'b.','MarkerSize',25);
+    hold off
+    drawnow
+    legend('Lower 4 corners (z=0)','Upper 4 corners')
 end
 
 
