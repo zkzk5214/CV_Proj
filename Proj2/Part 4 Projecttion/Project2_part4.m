@@ -46,11 +46,7 @@ end
 images_path = '.\Part 1 COLMAP\images\';
 for image_i=1:num_images
     I = rgb2gray(imread([images_path,'image',num2str(image_i),'.jpg']));
-   % I2 = rgb2gray(imread([images_path,'image2.jpg']));
-    % I3 = rgb2gray(imread('image3.jpg'));
-    % I4 = rgb2gray(imread('image4.jpg'));
-    % I5 = rgb2gray(imread('image5.jpg'));
-    % I6 = rgb2gray(imread('image6.jpg'));
+
     h_fig = figure(1000+image_i);
     set(h_fig,'Name',['Image',num2str(image_i),' and projection' ]);
     colormap(gray);
@@ -62,3 +58,5 @@ for image_i=1:num_images
     hold off
     drawnow
 end
+
+
