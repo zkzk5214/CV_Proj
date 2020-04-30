@@ -1,7 +1,7 @@
 %%%%%%%%%%%%  Function   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Function Purpose: Project 2 EE545
 % Matlab work Path: ~\GitHub\CV_Proj\Proj2
-%  Author:      LimingGao
+%  Author:      Liming Gao, Chengyu Hu, Zekai Liu, Mingzhao Yu
 %  Date:        04/27/2020
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

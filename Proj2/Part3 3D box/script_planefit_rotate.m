@@ -247,19 +247,19 @@ zlabel('z')
 legend('Box Corner','Dominant Plane','Location','north')
 view(-37,20)
 %%
-
+face_color = ['y','m', 'c', 'b','r','g'];
 figure(340);
-plot3(C_box_XYZ(1:4,1),C_box_XYZ(1:4,2),C_box_XYZ(1:4,3),'r.','MarkerSize',25);
-plot3(C_box_XYZ(5:8,1),C_box_XYZ(5:8,2),C_box_XYZ(5:8,3),'b.','MarkerSize',25);
+plot3(C_box_XYZ(1:4,1),C_box_XYZ(1:4,2),C_box_XYZ(1:4,3),'y.','MarkerSize',25);
+plot3(C_box_XYZ(5:8,1),C_box_XYZ(5:8,2),C_box_XYZ(5:8,3),'y.','MarkerSize',25);
 hold on
 P1 = fill3(C_box_XYZ(1:4,1),C_box_XYZ(1:4,2),C_box_XYZ(1:4,3),'y');
 P2 = fill3(C_box_XYZ(5:8,1),C_box_XYZ(5:8,2),C_box_XYZ(5:8,3),'m');
 P3 = fill3(C_box_XYZ([1,2,6,5],1),C_box_XYZ([1,2,6,5],2),C_box_XYZ([1,2,6,5],3),'c');
-P4 = fill3(C_box_XYZ([3,4,8,7],1),C_box_XYZ([3,4,8,7],2),C_box_XYZ([3,4,8,7],3),'r');
-P5 = fill3(C_box_XYZ([2,3,7,6],1),C_box_XYZ([2,3,7,6],2),C_box_XYZ([2,3,7,6],3),'g');
-P6 = fill3(C_box_XYZ([1,4,8,5],1),C_box_XYZ([1,4,8,5],2),C_box_XYZ([1,4,8,5],3),'y');
+P5 = fill3(C_box_XYZ([3,4,8,7],1),C_box_XYZ([3,4,8,7],2),C_box_XYZ([3,4,8,7],3),'r');
+P6 = fill3(C_box_XYZ([2,3,7,6],1),C_box_XYZ([2,3,7,6],2),C_box_XYZ([2,3,7,6],3),'g');
+P4 = fill3(C_box_XYZ([1,4,8,5],1),C_box_XYZ([1,4,8,5],2),C_box_XYZ([1,4,8,5],3),'b');
 
- %plot3(pointsXYZ(:,1),pointsXYZ(:,2),pointsXYZ(:,3),'b.');
+plot3(pointsXYZ(:,1),pointsXYZ(:,2),pointsXYZ(:,3),'g.');
  surf(x, y, z_fit);
 % new coordinate
 plot3(dominant_center_x , dominant_center_y ,dominant_center_z,'m.','MarkerSize',25); %o
