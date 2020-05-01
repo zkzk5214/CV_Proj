@@ -1,14 +1,16 @@
 %%%%%%%%%%%%  Function   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Function Purpose: Project 2 EE545
 % Matlab work Path: ~\GitHub\CV_Proj\Proj2
-%  Author:      LimingGao
+%  Authors:      Liming Gao, Chengyu Hu, Zekai Liu, Mingzhao Yu
 %  Date:        04/27/2020
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all; 
 close all;
-addpath('.\Part 4 Projecttion\');
+
+
 addpath('.\Part3 3D box\');
+addpath('.\Part 4 Projecttion\');
 %% Step1:  Run Part 1-3 to generate dominiant plane and 3D box
 script_planefit_rotate
 
@@ -39,7 +41,7 @@ end
 %% Step5: show pictures and box corners projection
 images_path = '.\Part 1 COLMAP\images\';
 for image_i=1:num_images
-    I = rgb2gray(imread([images_path,'image',num2str(image_i),'.jpg']));
+    I = (imread([images_path,'image',num2str(image_i),'.jpg']));
 
     h_fig = figure(900+image_i);
     set(h_fig,'Name',['Image',num2str(image_i),' and projection' ]);
@@ -84,7 +86,6 @@ for image_i=1:num_images
     for face_i = 1:length(nearest_faces_index)
         hold on
         patch(Pimagepts_3Dbox(1,face(nearest_faces_index(face_i),:),image_i),   Pimagepts_3Dbox(2,face(nearest_faces_index(face_i),:),image_i), face_color(nearest_faces_index(face_i)))
-        
         plot(Pimagepts_3Dbox(1,face(nearest_faces_index(face_i),:),image_i), Pimagepts_3Dbox(2,face(nearest_faces_index(face_i),:),image_i),'yo','MarkerSize',5);
         % plot(Pimagepts_3Dbox(1,5:8,image_i),Pimagepts_3Dbox(2,5:8,image_i),'b.','MarkerSize',25);
     end

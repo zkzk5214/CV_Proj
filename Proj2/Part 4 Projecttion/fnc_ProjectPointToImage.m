@@ -26,12 +26,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-function [Pimagepts] = fnc_ProjectPointToImage(Pworldpts_3D,Pose_External, Camera_Intrinsic )
+function [Pimagepts, Depth] = fnc_ProjectPointToImage(Pworldpts_3D,Pose_External, Camera_Intrinsic )
 
 % Step1: World 3D coordinate to camera 3D coordinate
 numpts = size(Pworldpts_3D,2);
 Point3D_Homogeneous =  [Pworldpts_3D; ones(1,numpts)];
 world_point =  Pose_External * Point3D_Homogeneous;   % 3x4 * 4xN = 3*N
+Depth = world_point(3,:); % 1*N,  distance along the principle axis OF THE CAMERA (aka depth) to each point 
 world_point_hnormalized = world_point./world_point(3,:);   % 3*N ¡ú 2*N
 
 % Step2: Camera 3D coordinate  to Image coordinate (WorldToImage)
@@ -46,7 +47,7 @@ k1 = Camera_Intrinsic(4);
 world_point_distortion = world_point_hnormalized + k1*world_point_hnormalized.*r2;  % x'',y''
 
 % Transform to image coordinates
-Pimagepts = f*world_point_distortion + repmat(cxy,1,numpts);
+Pimagepts = f*world_point_distortion(1:2,:) + repmat(cxy,1,numpts);
 
 end
 

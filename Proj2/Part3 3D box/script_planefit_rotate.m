@@ -93,8 +93,10 @@ inliers = data(:,inliers_index);
 plot3(inliers(1,:),inliers(2,:),inliers(3,:),'r+');
 
 % Show dominant plane
- xAxis = min(inliers(1,:)):max(inliers(1,:));
- yAxis = min(inliers(2,:)):max(inliers(2,:));
+ xAxis = min(inliers(1,:)):0.1:max(inliers(1,:));
+ yAxis = min(inliers(2,:)):0.1:max(inliers(2,:));
+%   xAxis = floor(min(inliers(1,:))):1:ceil(max(inliers(1,:)));
+%  yAxis = floor(min(inliers(2,:))):1:ceil(max(inliers(2,:)));
  [x,y] = meshgrid(xAxis, yAxis);    
  z_fit = -bestplane(1) * x/bestplane(3) - bestplane(2)  * y/bestplane(3)...
      - bestplane(4)/bestplane(3);   % ax+by+cz+d=0 => z= ...
@@ -117,6 +119,9 @@ plot3(dominant_center_x , dominant_center_y ,dominant_center_z,'c.','MarkerSize'
  zlabel('Z')
  legend('points cloud','inliers','dominant plane')
  
+ 
+ % bestplane =[0.3173    0.0289   -0.3741    4.7391] % Multi cameras
+ bestplane = [4.8523    0.5644   -5.5002   70.2790]; % Single cameras
 %% =================Part3 Coordinate transformation and 3D box============ 
  
 %% step1: define new coordinate 
@@ -136,13 +141,13 @@ eqn5 = norm(x2) == 1;
 sol = solve([eqn1,eqn2,eqn3,eqn4,eqn5],[x11,x12,x13,x21,x22,x23]);
 x1 = double([sol.x11,sol.x12,sol.x13]'); % basis 1 of plane
 x2 = double([sol.x21,sol.x22,sol.x23]'); % basis 2 of plane
-R = -[x1 x2 v];   % coordinate vector of new coordinate
+R = [x1 x2 v];   % coordinate vector of new coordinate
 dominant_center = [dominant_center_x  dominant_center_y dominant_center_z];   % coordinate vector of new coordinate
 %---------------------old-------------------------------------
 %offset = [d/a/3,d/b/3,d/c/3]; % a(x+d/a/3) + b(y+d/b/3) + c(z+d/c/3) = 0
 %miu_inliers = [-32.5164,48.8471,0]; %(miu_inliers + offset)*R'
 % newXYZ = (pointsXYZ+offset)*R' - miu_inliers;
-%^-------------------------------------------------------------------
+%-------------------------------------------------------------------
 check_newCoor_flag =1; 
 if check_newCoor_flag == 1
     h_fig = figure(300);
@@ -156,9 +161,9 @@ if check_newCoor_flag == 1
     surf(x, y, z_fit);
     % new coordinate 
     plot3(dominant_center_x , dominant_center_y ,dominant_center_z,'m.','MarkerSize',25); %o
-    quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-v(1),-v(2),-v(3),'b','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %x
-    quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-x1(1),-x1(2),-x1(3),'r','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %y
-    quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-x2(1),-x2(2),-x2(3),'g','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %z
+    quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,v(1),v(2),v(3),'b','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %x
+    quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,x1(1),x1(2),x1(3),'r','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %y
+    quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,x2(1),x2(2),x2(3),'g','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %z
         title(['New Coordinate']);
     grid on
     rotate3d on
@@ -197,13 +202,14 @@ p6 = [width_box/2,-width_box/2,width_box];
 p7 = [-width_box/2,-width_box/2,width_box];
 p8 = [-width_box/2,width_box/2,width_box];
 C_box_z0 = [p1;p2;p3;p4;p5;p6;p7;p8];% coordinates of box in z=0 coordinates
+% C_box_z0 = [p1;p2;p3;p4];% coordinates of box in z=0 coordinates
 
 h_fig = figure(320);
 set(h_fig,'Name','Box in new coordinate');
-plot3(C_box_z0(:,1),C_box_z0(:,2),C_box_z0(:,3),'b.','MarkerSize',25);
+plot3(C_box_z0(:,1),C_box_z0(:,2),C_box_z0(:,3),'r.','MarkerSize',25);
 hold on
-plot3(newXYZ_dominant(1,:),newXYZ_dominant(2,:),newXYZ_dominant(3,:),'r.');
-
+plot3(newXYZ_dominant(1,:),newXYZ_dominant(2,:),newXYZ_dominant(3,:),'g.');
+plot3(newXYZ_3Dpoints(1,:),newXYZ_3Dpoints(2,:),newXYZ_3Dpoints(3,:),'b.');
 surf(reshape(newXYZ_dominant(1,:),size(x)), reshape(newXYZ_dominant(2,:),size(x)), reshape(newXYZ_dominant(3,:),size(x)));
 grid on
 rotate3d on
@@ -229,9 +235,9 @@ hold on
  surf(x, y, z_fit);
 % new coordinate
 plot3(dominant_center_x , dominant_center_y ,dominant_center_z,'m.','MarkerSize',25); %o
-quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-v(1),-v(2),-v(3),'b','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %x
-quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-x1(1),-x1(2),-x1(3),'r','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %y
-quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-x2(1),-x2(2),-x2(3),'g','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %z
+quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,v(1),v(2),v(3),'b','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %x
+quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,x1(1),x1(2),x1(3),'r','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %y
+quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,x2(1),x2(2),x2(3),'g','MaxHeadSize',2,'AutoScaleFactor',1.5,'LineWidth',2) %z
 grid on
 rotate3d on
 axis equal
@@ -241,24 +247,25 @@ zlabel('z')
 legend('Box Corner','Dominant Plane','Location','north')
 view(-37,20)
 %%
-
+face_color = ['y','m', 'c', 'b','r','g'];
 figure(340);
-plot3(C_box_XYZ(:,1),C_box_XYZ(:,2),C_box_XYZ(:,3),'r.','MarkerSize',25);
-hold on 
-P1 = fill3(C_box_XYZ(1:4,1),C_box_XYZ(1:4,2),C_box_XYZ(1:4,3),1);
- P2 = fill3(C_box_XYZ(5:8,1),C_box_XYZ(5:8,2),C_box_XYZ(5:8,3),2);
-P3 = fill3(C_box_XYZ([1,2,6,5],1),C_box_XYZ([1,2,6,5],2),C_box_XYZ([1,2,6,5],3),3);
-P4 = fill3(C_box_XYZ([3,4,8,7],1),C_box_XYZ([3,4,8,7],2),C_box_XYZ([3,4,8,7],3),4);
-P5 = fill3(C_box_XYZ([2,3,7,6],1),C_box_XYZ([2,3,7,6],2),C_box_XYZ([2,3,7,6],3),5);
-P6 = fill3(C_box_XYZ([1,4,8,5],1),C_box_XYZ([1,4,8,5],2),C_box_XYZ([1,4,8,5],3),6);
+plot3(C_box_XYZ(1:4,1),C_box_XYZ(1:4,2),C_box_XYZ(1:4,3),'y.','MarkerSize',25);
+plot3(C_box_XYZ(5:8,1),C_box_XYZ(5:8,2),C_box_XYZ(5:8,3),'y.','MarkerSize',25);
+hold on
+P1 = fill3(C_box_XYZ(1:4,1),C_box_XYZ(1:4,2),C_box_XYZ(1:4,3),'y');
+P2 = fill3(C_box_XYZ(5:8,1),C_box_XYZ(5:8,2),C_box_XYZ(5:8,3),'m');
+P3 = fill3(C_box_XYZ([1,2,6,5],1),C_box_XYZ([1,2,6,5],2),C_box_XYZ([1,2,6,5],3),'c');
+P5 = fill3(C_box_XYZ([3,4,8,7],1),C_box_XYZ([3,4,8,7],2),C_box_XYZ([3,4,8,7],3),'r');
+P6 = fill3(C_box_XYZ([2,3,7,6],1),C_box_XYZ([2,3,7,6],2),C_box_XYZ([2,3,7,6],3),'g');
+P4 = fill3(C_box_XYZ([1,4,8,5],1),C_box_XYZ([1,4,8,5],2),C_box_XYZ([1,4,8,5],3),'b');
 
- plot3(pointsXYZ(:,1),pointsXYZ(:,2),pointsXYZ(:,3),'b.');
+plot3(pointsXYZ(:,1),pointsXYZ(:,2),pointsXYZ(:,3),'g.');
  surf(x, y, z_fit);
 % new coordinate
 plot3(dominant_center_x , dominant_center_y ,dominant_center_z,'m.','MarkerSize',25); %o
-quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-v(1),-v(2),-v(3),'b','MaxHeadSize',2,'AutoScaleFactor',2,'LineWidth',2) %x
-quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-x1(1),-x1(2),-x1(3),'r','MaxHeadSize',2,'AutoScaleFactor',2,'LineWidth',2) %y
-quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,-x2(1),-x2(2),-x2(3),'g','MaxHeadSize',2,'AutoScaleFactor',2,'LineWidth',2) %z
+quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,v(1),v(2),v(3),'b','MaxHeadSize',2,'AutoScaleFactor',2,'LineWidth',2) %x
+quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,x1(1),x1(2),x1(3),'r','MaxHeadSize',2,'AutoScaleFactor',2,'LineWidth',2) %y
+quiver3(dominant_center_x , dominant_center_y ,dominant_center_z,x2(1),x2(2),x2(3),'g','MaxHeadSize',2,'AutoScaleFactor',2,'LineWidth',2) %z
 grid on
 rotate3d on
 xlabel('X')

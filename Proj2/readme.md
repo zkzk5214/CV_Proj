@@ -1,3 +1,5 @@
+Just run Project2_main.m
+
 ## Task1: Chengyu Zekai
 ### 1,2,3): take pictures, use COLMAP to generate point cloud, and camera\image parameters
 ### 4,5): fit a plane using RANSAC based on the point cloud and display the result.
