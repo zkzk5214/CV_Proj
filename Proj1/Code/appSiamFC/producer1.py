@@ -27,6 +27,7 @@ BufferElement = namedtuple('BufferElement', ['score_map', 'img', 'ref_img',
 class ProducerThread(Thread):
     """
     """
+
     def __init__(self, seq, buffer, dataset_path, model_path, set_type='train',
                  max_res=800, branch_arch='alexnet', ctx_mode='max'):
         """
@@ -92,62 +93,64 @@ class ProducerThread(Thread):
                 img = img_resize_fcn(img, self.resize_dims, interp='bilinear')
                 dims = self.resize_dims
             if self.valid_frames[self.idx]:
-                bbox = self.denorm_bbox(self.bboxes_norm[self.idx], dims) ## Return Position of Object in full IMage
+                bbox = self.denorm_bbox(self.bboxes_norm[self.idx], dims)  # Return Position of Object in full image
             else:
                 bbox = None
-            score_map = self.make_score_map(img)
-            ## Find position of maximal point and store it in a 2-size queue
-            maximal = np.max(score_map)
 
-            if self.idx>length_que:
+            score_map = self.make_score_map(img)
+
+            # Find position of maximal point and store it in a 2-size queue
+            maximal = np.max(score_map)
+            if self.idx > length_que:
                 pos_max = np.array(np.where(score_map == maximal)).T[0]
                 last = current
                 current = pos_max
                 diff_max = np.sqrt(np.sum((last - current) ** 2))
-                if score_map[queue_scores[-1][0],queue_scores[-1][1]]<0.3: # if score<0.3, use kalman prediction
-                    #pos_max = queue_scores[1] + queue_scores[1] - queue_scores[0]
+                
+                # if score < 0.3, use Kalman prediction
+                if score_map[queue_scores[-1][0], queue_scores[-1][1]] < 0.3:
                     que_mean = np.mean(queue_scores)
                     pos_max = queue_scores[-1] - queue_scores[-2] + queue_scores[-1]
-                    #score_map = np.zeros(dims)
-                    #score_map[pos_max] = 0.99
-                    x, y = np.meshgrid(np.linspace(0, dims[1], dims[1]), np.linspace(0,dims[0], dims[0]))
+                    # score_map = np.zeros(dims)
+                    # score_map[pos_max] = 0.99
+                    x, y = np.meshgrid(np.linspace(0, dims[1], dims[1]), np.linspace(0, dims[0], dims[0]))
                     d = np.sqrt((x - pos_max[1]) * (x - pos_max[1]) + (y - pos_max[0]) * (y - pos_max[0]))
                     sigma, mu = 8.0, pos_max
                     score_map = np.exp(-(d ** 2 / (2.0 * sigma ** 2)))
                     queue_scores.append(pos_max)
                     queue_scores.pop(0)
                     current = pos_max
-                elif diff_max>100 :
+
+                elif diff_max > 100:
                     x, y = np.meshgrid(np.linspace(0, dims[1], dims[1]), np.linspace(0, dims[0], dims[0]))
                     d = np.sqrt((x - pos_max[1]) * (x - pos_max[1]) + (y - pos_max[0]) * (y - pos_max[0]))
                     sigma, mu = 18.0, pos_max
-                    w_map = 1 -np.exp(-(d ** 2 / (2.0 * sigma ** 2)))
+                    w_map = 1 - np.exp(-(d ** 2 / (2.0 * sigma ** 2)))
                     score_map = w_map * score_map
                     maximal = np.max(score_map)
                     pos_max = np.array(np.where(score_map == maximal)).T[0]
                     queue_scores.append(pos_max)
                     queue_scores.pop(0)
                     current = pos_max
+
                 else:
                     score_map = score_map
                     queue_scores.append(pos_max)
                     queue_scores.pop(0)
 
-
             else:
-                pos_max = np.array(np.where(score_map==maximal)).T[0]
+                pos_max = np.array(np.where(score_map == maximal)).T[0]
                 last = current
                 current = pos_max
-                diff_max = np.sqrt(np.sum((last-current)**2))
-                if np.sum(last)>0 and diff_max>10:
-                    pos_max = 2*queue_scores[-1] - queue_scores[-2]
+                diff_max = np.sqrt(np.sum((last - current) ** 2))
+                if np.sum(last) > 0 and diff_max > 10:
+                    pos_max = 2 * queue_scores[-1] - queue_scores[-2]
                     current = pos_max
                 queue_scores.append(pos_max)
                 x, y = np.meshgrid(np.linspace(0, dims[1], dims[1]), np.linspace(0, dims[0], dims[0]))
                 d = np.sqrt((x - pos_max[1]) * (x - pos_max[1]) + (y - pos_max[0]) * (y - pos_max[0]))
                 sigma, mu = 8.0, pos_max
                 score_map = np.exp(-(d ** 2 / (2.0 * sigma ** 2)))
-
 
             data = BufferElement(score_map,
                                  img,
@@ -178,10 +181,10 @@ class ProducerThread(Thread):
                 correct dimensions for an image with the given dimensions.
         """
         bbox = bbox_norm[:]
-        bbox[0] = int(bbox[0]*img_dims[1])
-        bbox[1] = int(bbox[1]*img_dims[0])
-        bbox[2] = int(floor(bbox[2]*img_dims[1]))
-        bbox[3] = int(floor(bbox[3]*img_dims[0]))
+        bbox[0] = int(bbox[0] * img_dims[1])
+        bbox[1] = int(bbox[1] * img_dims[0])
+        bbox[2] = int(floor(bbox[2] * img_dims[1]))
+        bbox[3] = int(floor(bbox[3] * img_dims[0]))
         return tuple(bbox)
 
     @torch.no_grad()
@@ -201,20 +204,19 @@ class ProducerThread(Thread):
         if ctx_mode == 'max':
             ctx_size = max(bbox[2], bbox[3])
         elif ctx_mode == 'mean':
-            ctx_size = int((bbox[2] + bbox[3])/2)
+            ctx_size = int((bbox[2] + bbox[3]) / 2)
         # It resizes the image so that the reference image has dimensions 127x127
         if ctx_size != 127:
-            new_H = int(self.vid_dims[0]*127/ctx_size)
-            new_W = int(self.vid_dims[1]*127/ctx_size)
+            new_H = int(self.vid_dims[0] * 127 / ctx_size)
+            new_W = int(self.vid_dims[1] * 127 / ctx_size)
             self.resize_dims = (new_H, new_W)
             ref_frame = img_resize_fcn(ref_frame, self.resize_dims, interp='bilinear')
             bbox = self.denorm_bbox(self.bboxes_norm[ref_idx], self.resize_dims)
             ctx_size = 127
         # Set image values to the range 0-1 before feeding to the network
-        ref_frame = ref_frame/255
+        ref_frame = ref_frame / 255
 
-
-        ref_center = (int((bbox[1] + bbox[3]/2)), int((bbox[0] + bbox[2]/2)))
+        ref_center = (int((bbox[1] + bbox[3] / 2)), int((bbox[0] + bbox[2] / 2)))
         ## ????
 
         ref_img = self.extract_ref(ref_frame, ref_center, ctx_size)
@@ -242,35 +244,35 @@ class ProducerThread(Thread):
             ref_img: (numpy.ndarray) The (ctx_size, ctx_size) reference image.
         """
         H, W, _ = full_img.shape
-        y_min = max(0, center[0]-ctx_size//2)
-        y_max = min(H-1, center[0] + ctx_size//2)
-        x_min = max(0, center[1]-ctx_size//2)
-        x_max = min(W-1, center[1] + ctx_size//2)
-        offset_top = max(0, ctx_size//2 - center[0])
-        offset_bot = max(0, center[0] + ctx_size//2 - H + 1)
-        offset_left = max(0, ctx_size//2 - center[1])
-        offset_right = max(0, center[1] + ctx_size//2 - W + 1)
+        y_min = max(0, center[0] - ctx_size // 2)
+        y_max = min(H - 1, center[0] + ctx_size // 2)
+        x_min = max(0, center[1] - ctx_size // 2)
+        x_max = min(W - 1, center[1] + ctx_size // 2)
+        offset_top = max(0, ctx_size // 2 - center[0])
+        offset_bot = max(0, center[0] + ctx_size // 2 - H + 1)
+        offset_left = max(0, ctx_size // 2 - center[1])
+        offset_right = max(0, center[1] + ctx_size // 2 - W + 1)
         img_mean = full_img.mean()
-        ref_img = np.ones([ctx_size, ctx_size, 3])*img_mean
-        ref_img[offset_top:(ctx_size-offset_bot),
-                offset_left:(ctx_size-offset_right)] = (
-                    full_img[y_min:(y_max+1), x_min:(x_max+1)])
+        ref_img = np.ones([ctx_size, ctx_size, 3]) * img_mean
+        ref_img[offset_top:(ctx_size - offset_bot),
+        offset_left:(ctx_size - offset_right)] = (
+            full_img[y_min:(y_max + 1), x_min:(x_max + 1)])
         if apply_gauss:
             h, w, _ = ref_img.shape
-            gauss = make_gaussian_map((h, w), (h//2, w//2), sig=gauss_sig)
+            gauss = make_gaussian_map((h, w), (h // 2, w // 2), sig=gauss_sig)
             gauss = np.expand_dims(gauss, axis=2)
-            ref_img = ref_img*gauss
+            ref_img = ref_img * gauss
         return ref_img
 
     def make_score_map(self, img, mode='sigmoid'):
         """
         """
-        img = img/255
+        img = img / 255
         # The offset is inserted so that the final size of the score map matches
         # the search image. To know more see "How to overlay the search img with
         # the score map" in Trello/Report. It is half of the dimension of the
         # Smallest Class Equivalent of the Ref image.
-        offset = (((self.ref.shape[0] + 1)//4)*4 - 1)//2
+        offset = (((self.ref.shape[0] + 1) // 4) * 4 - 1) // 2
         img_mean = img.mean()
         img_padded = np.pad(img, ((offset, offset), (offset, offset), (0, 0)),
                             mode='constant', constant_values=img_mean)
@@ -284,7 +286,7 @@ class ProducerThread(Thread):
             score_map = sigmoid(score_map)
         elif mode == 'norm':
             score_map = score_map - score_map.min()
-            score_map = score_map/score_map.max()
+            score_map = score_map / score_map.max()
         score_map = score_map.unsqueeze(0)
         # We upscale 4 times, because the total stride of the network is 4
         score_map = F.interpolate(score_map, scale_factor=4, mode='bilinear',

@@ -1,5 +1,4 @@
 % This program is used to find the dominant plane from cloud points 
-% author:liming
 % 2020-04-23
 
 clc;clear all;close all;
@@ -88,7 +87,7 @@ for i=1:iter
 mask=abs(bestplane*[data; ones(1,size(data,2))])/sqrt...
     (plane_fit(1)^2+plane_fit(2)^2+plane_fit(3)^2)<sigma;   % Logical    
 inliers_index = find(mask==1);
-fprintf(('Find %d inliers!\n'),length(inliers_index))
+fprintf(('Find %d inliers!\n'),length(inliers_index));
 inliers = data(:,inliers_index);
 plot3(inliers(1,:),inliers(2,:),inliers(3,:),'r+');
 
